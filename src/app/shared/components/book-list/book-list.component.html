@@ -1,0 +1,32 @@
+<div class="book-list" @listAnimation>
+  @for(book of this.books(); track book.id) {
+  <mat-card class="book-item" appearance="outlined" (click)="openPreviewDialog(book)" [@itemAnimation]>
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ book.title }}</mat-card-title>
+        <mat-card-subtitle>{{ book.author }}</mat-card-subtitle>
+        <mat-card-subtitle>{{ book.publication }}</mat-card-subtitle>
+      </mat-card-title-group>
+
+      <mat-card-actions>
+        <button mat-icon-button (click)="openEditModal($event, book)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteBook($event, book.id)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card-header>
+    <mat-card-content >
+      <div class="image-container">
+        @if (book.coverImage) {
+  <img mat-card-image [src]="book.coverImage | imagePreview | async" alt="{{ book.title }} cover image" />
+
+  } @else {
+  <img mat-card-image src="https://placehold.co/600x400" alt="{{ book.title }} placeholder image" />
+  }
+  </div>
+</mat-card-content>
+</mat-card>
+  }
+</div>

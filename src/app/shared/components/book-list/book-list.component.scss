@@ -1,0 +1,28 @@
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+  justify-content: flex-start;
+
+  .book-item {
+    max-width: 460px;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .image-container {
+    margin: 10px 0;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+#add-button {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  z-index: 100;
+}

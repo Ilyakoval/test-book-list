@@ -8,12 +8,4 @@ import { RouterOutlet } from '@angular/router'
   template: `<router-outlet />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {
-  public readonly user = {
-    name: 'Jon',
-  }
-
-  getName() {
-    return this.user.name
-  }
-}
+export class AppComponent {}

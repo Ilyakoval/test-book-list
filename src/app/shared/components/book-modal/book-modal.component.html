@@ -1,0 +1,59 @@
+<div class="header">
+  <h2 mat-dialog-title>
+    {{ dialogTitle }}
+  </h2>
+</div>
+
+<div mat-dialog-content>
+  @if (data.isEdit && bookForm) {
+  <form [formGroup]="bookForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Author</mat-label>
+      <input matInput formControlName="author" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Publication</mat-label>
+      <input matInput formControlName="publication" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Year</mat-label>
+      <input matInput type="number" formControlName="year" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <app-image-upload formControlName="coverImage"></app-image-upload>
+  </form>
+  } @else if (data.book) {
+    <p><strong>Author:</strong> {{ data.book.author }}</p>
+    <p><strong>Publication:</strong> {{ data.book.publication }}</p>
+    <p><strong>Year:</strong> {{ data.book.year }}</p>
+    <p><strong>Description:</strong> {{ data.book.description }}</p>
+    @if (data.book.coverImage) {
+  <img
+    [src]="data.book.coverImage | imagePreview | async"
+    alt="{{ data.book.title }} cover"
+  />
+  }
+  }
+</div>
+
+<div mat-dialog-actions>
+  @if (data.isEdit) {
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-flat-button (click)="submit()" [disabled]="bookForm && bookForm.invalid">Save</button>
+  } @else {
+    <button mat-button (click)="deleteBook()" color="warn">Delete</button>
+    <button mat-flat-button (click)="toggleEditBookMode()" color="primary">Edit</button>
+  }
+</div>

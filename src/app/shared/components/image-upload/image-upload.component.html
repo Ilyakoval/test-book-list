@@ -1,0 +1,21 @@
+<div class="image-upload-container">
+  <input
+    #fileInput
+    type="file"
+    hidden
+    id="fileInput"
+    class="file-input"
+    (change)="onFileChange($event)"
+    accept="image/*"
+  />
+  <button mat-flat-button (click)="fileInput.click()">Upload Image</button>
+
+  @if (selectedImage) {
+  <div class="preview-container">
+    <img [src]="selectedImage" alt="Image Preview" class="image-preview" />
+    <button id="clearButton" mat-icon-button color="warn" (click)="clearImage()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  }
+</div>
